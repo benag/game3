@@ -1,50 +1,44 @@
-
+"use strict";
 var canvas,stage,ONCE=true,assets,
-baloonURL,
 backgrondURL,
 blueBaloon,
 grennBaloon,
-baloon,
 background,
-image,
-bitmap,
 explosionURL,
 STATE='INTRO',
 startURL,
-activeBaloons=0,
 currentCycle=0,
-maxCycles=10,
 baloons=[],
 positiveScoreURL,
 negatievScore,
+redBaloon,
 TickBetweenCycles=200,
-IntroBetweenCycles = 15,
 tickIncycle=199,
 scoring={},
 scoreText,
 childImage,
-ThreeBaloons,
 start,
 menu,
 childbitmap,
-ThreeBaloonsBitmap,
-menuBitmap,
 startBitmap,
 stopMusic=false,
 titleIIbitmap,
-CW,
-CH,
 S,
 instructBit,
 filterBackURL,
 speed=0.8,
-score20L,
 star,
 level=1,
 endLevel,
 tmpTick=1,
 yourscourse,
 startingLevel,
+upperscore,
+titleII,
+stopmusic,
+buttomLine,
+upperLine,
+score20Large,
 filterBack;
 
 
@@ -70,7 +64,7 @@ filterBack;
       canvas.height= 700;
       scoring.score=0;
       canvas.style.position = "absolute";
-	    canvas.style.left = 500+"px";
+	  canvas.style.left = 500+"px";
       canvas.style.top = 100+"px"; 
 	    //canvas.width = canvaswidth; 
 	    //canvas.height = 550; 
@@ -85,7 +79,7 @@ filterBack;
       //assets.scaleMethod = ndgmr.nearestNeighborScale; 
       assets.scaleMethod = ndgmr.nativeScale;
       assets.onComplete = assetsLoaded;
-	     blueBaloon = 'assets/BlueB.png';
+	  blueBaloon = 'assets/BlueB.png';
       grennBaloon = 'assets/GreenB.png';
       redBaloon = 'assets/RedB.png';
       backgrondURL = 'assets/BG_1.jpg';
@@ -96,7 +90,7 @@ filterBack;
       positiveScoreURL = 'assets/scoring20.png';
       childImage = 'assets/boy.png';
       titleII = 'assets/title.png';
-      instructBit = 'assets/text_button.png',
+      instructBit = 'assets/text_button.png';
       stopmusic='assets/Sound-off-icon.png' ;
       buttomLine = 'assets/botttom-score.png';
       upperLine = 'assets/upper-score.png';
@@ -142,7 +136,7 @@ filterBack;
       ]); 
        if (registeredPlugins) { 
            createjs.Sound.alternateExtensions = ['m4a'];
-           createjs.Sound.addEventListener("loadComplete",createjs.proxy(this.soundsLoaded,this)); 
+           //createjs.Sound.addEventListener("loadComplete",createjs.proxy(soundsLoaded,this));
            var audioPath = "assets/sfx/";
        var manifest = [
           {id:"pop", src:"pop.ogg"},
@@ -150,9 +144,8 @@ filterBack;
           //{id:"back", src:"DST-Azum.mp3"}
           {id:"back", src:"amik.ogg"},
           {id:"tadam", src:"tada3.ogg"},
-          {id:"finishLevel", src:"triumphal.wav"},
+          {id:"finishLevel", src:"triumphal.wav"} ];
 
-          ];
         createjs.Sound.addEventListener("fileload", handleLoad);
         createjs.Sound.registerManifest(manifest, audioPath); 
            
@@ -170,6 +163,10 @@ filterBack;
     }
     
    }
+   //function soundsLoaded(){
+   //    console.log('inside sounds loaded');
+   //    createjs.Sound.play("back",{volume:0.3,loop:-1});
+   //}
    function handleLoad(event) {
       //createjs.Sound.play(event.src);
       //alert('completed loading sound');
@@ -177,7 +174,7 @@ filterBack;
       if (event.src==='assets/sfx/amik.ogg'){
         createjs.Sound.play("back",{volume:0.3,loop:-1});
       }
-      
+
    }
    
    function addI(res,x,y,call){
@@ -187,7 +184,6 @@ filterBack;
     }
     if (y!=null) {
       bitmap.y=y;
-
     }
     if (call!=null){
       bitmap.on("click",call);
@@ -212,17 +208,15 @@ filterBack;
 
    }
    function assetsLoaded(e) { 
-      
+      console.log('starting assetLoaded');
       background = new createjs.Bitmap(assets[backgrondURL]); 
-      //background.scaleX = S*2;
+      ////background.scaleX = S*2;
       background.scaleY = S*1.5;
       stage.addChild(background);
-
-      filterBack = new createjs.Bitmap(assets[filterBackURL]); 
+      filterBack = new createjs.Bitmap(assets[filterBackURL]);
       //filterBack.scaleX = S*2;
       filterBack.scaleY = S*1.5;
       stage.addChild(filterBack);
-
       childbitmap = new createjs.Bitmap(childImage);
       childbitmap.x =  300;
       childbitmap.y =  230;
@@ -232,15 +226,13 @@ filterBack;
       startBitmap.x=30;
       startBitmap.y=420;
       startBitmap.on("click", handleInstructClick);
-      
-      
       stage.addChild(startBitmap);
       titleIIbitmap = new createjs.Bitmap(titleII);
       titleIIbitmap.x=90;
       titleIIbitmap.y=40;
       stage.addChild(titleIIbitmap);
       addI(stopmusic,10,10,stopSound);
-      createjs.Ticker.setFPS(30); 
+      createjs.Ticker.setFPS(30);
       createjs.Ticker.addEventListener("tick", onTick);
    } 
    
@@ -287,15 +279,15 @@ filterBack;
     }
     function colorPick(){
       var colorpicker = Math.floor(Math.random()*3); 
-
       var color;
       if (colorpicker===0) return redBaloon;
       if (colorpicker===1) return blueBaloon;
       if (colorpicker===2) return grennBaloon;
     }
+
     function setRound(){
-      var number1=randomIntFromInterval(2,9)
-      var number2=randomIntFromInterval(2,9)
+      var number1=randomIntFromInterval(2,9);
+      var number2=randomIntFromInterval(2,9);
       var number3 = number1*number2;
       var number4  = Math.floor(Math.random()*100);
       var number5  = Math.floor(Math.random()*100);
@@ -383,7 +375,6 @@ filterBack;
     }
    // update the stage every frame 
    function onTick(e) {
-   //console.log('starting tick'); 
     if (STATE==='GAME'){
       var scorenum = scoring.score;
       scoreText.text =scorenum.toString();
@@ -398,18 +389,18 @@ filterBack;
           tickIncycle=0;
 
         }
-        
+
         //console.log(scoring.score);
       }
     }
     if (STATE==='INTRO'){
-        
+
 
     }
-  
+
 
     stage.update();
        //stage.tick();
-   //console.log('ending tick');    
+   //console.log('ending tick');
    } 
    window.onload = init; 
