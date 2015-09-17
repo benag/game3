@@ -18,7 +18,9 @@
  */
 var app = {
     // Application Constructor
+
     initialize: function() {
+        alert('starting app');
         this.bindEvents();
     },
     // Bind Event Listeners
@@ -34,10 +36,19 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        if (config.registerSound === 'cordova'){
+            MBSound.my_media = new Media('img/sfx/amik.ogg',
+                // success callback
+                function () {
+                    console.log("playAudio():Audio Success");
+                },
+                // error callback
+                function (err) { console.log("playAudio():Audio Error: " + err); }
+            );
+        }
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-
         console.log('Received Event: ' + id);
     }
 };

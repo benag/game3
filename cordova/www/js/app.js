@@ -1,22 +1,17 @@
 "use strict";
+
+
 var canvas, stage, ONCE = true, assets,
-    backgrondURL,
-    blueBaloon,
-    grennBaloon,
+
     background,
-    explosionURL,
     STATE = 'INTRO',
     startURL,
     currentCycle = 0,
     baloons = [],
-    positiveScoreURL,
-    negatievScore,
-    redBaloon,
     TickBetweenCycles = 200,
     tickIncycle = 199,
     scoring = {},
     scoreText,
-    childImage,
     start,
     menu,
     childbitmap,
@@ -24,29 +19,24 @@ var canvas, stage, ONCE = true, assets,
     stopMusic = false,
     titleIIbitmap,
     S, cw, ch, normalw, normalh,
-    instructBit,
-    filterBackURL,
     speed = 0.8,
-    star,
     level = 1,
     endLevel,
     tmpTick = 1,
     yourscourse,
     startingLevel,
-    upperscore,
-    titleII,
     stopmusic,
     buttomLine,
     upperLine,
-    score20Large,
     filterBack;
 
 
 function init() {
     // creating the canvas-element
     canvas = document.createElement('canvas');
-    window.addEventListener('resize', resize, false);
-    console.log('screen width: ' + ndgmr.getScreenWidth());
+    MathBalloonWindow.setWindowDimentions();
+    MathBalloonWindow.setCanvas(canvas);
+    window.addEventListener('resize', MathBalloonWindow.resize, false);
     cw = ndgmr.getScreenWidth();
     ch = ndgmr.getScreenHeight();
     //S = Math.min(cw/800,ch/480);
@@ -71,84 +61,24 @@ function init() {
     // initializing the stage
     stage = new createjs.Stage(canvas);
     createjs.Touch.enable(stage);//only for mobile
-    assets = new AssetFactory();
-    console.log('scale is: ' + S);
-    //assets.scale = S;
-    //assets.scaleMethod = ndgmr.nearestNeighborScale;
-    assets.scaleMethod = ndgmr.nativeScale;
-    assets.onComplete = assetsLoaded;
-    blueBaloon = 'img/BlueB.png';
-    grennBaloon = 'img/GreenB.png';
-    redBaloon = 'img/RedB.png';
-    backgrondURL = 'img/BG_1.jpg';
-    filterBackURL = 'img/blueLayer.png';
-    explosionURL = 'img/bubbles.png';
-    upperscore = 'img/upper-score.png';
-    negatievScore = 'img/scoringminus5.png';
-    positiveScoreURL = 'img/scoring20.png';
-    childImage = 'img/boy.png';
-    titleII = 'img/title.png';
-    instructBit = 'img/text_button.png';
-    stopmusic = 'img/Sound-off-icon.png';
-    buttomLine = 'img/botttom-score.png';
-    upperLine = 'img/upper-score.png';
-    score20Large = 'img/score20Large.png';
-    star = 'img/star.png';
+    //assets = new AssetFactory();
+    //console.log('scale is: ' + S);
+    ////assets.scale = S;
+    ////assets.scaleMethod = ndgmr.nearestNeighborScale;
+    AssetsService.init(assetsLoaded);
+    AssetsService.registerAssets();
     start = '';
     menu = '';
     startURL = '';
-    assets.loadAssets([
-        backgrondURL,
-        blueBaloon,
-        grennBaloon,
-        redBaloon,
-        explosionURL,
-        upperscore,
-        negatievScore,
-        positiveScoreURL,
-        childImage,
-        titleII,
-        instructBit,
-        stopmusic,
-        buttomLine,
-        upperLine,
-        star,
-        score20Large
-
-    ]);
     loadSounds();
-    resize();
+    MathBalloonWindow.resize();
 }
 
-function resize() {
-
-    //canvas.width= window.innerWidth;
-    //canvas.height= window.innerHeight
-
-}
 function loadSounds() {
-    var registeredPlugins = createjs.Sound.registerPlugins([
-        createjs.CocoonJSAudioPlugin,
-        createjs.WebAudioPlugin,
-        createjs.HTMLAudioPlugin
-    ]);
-    if (registeredPlugins) {
-        createjs.Sound.alternateExtensions = ['m4a'];
-        //createjs.Sound.addEventListener("loadComplete",createjs.proxy(soundsLoaded,this));
-        var audioPath = "img/sfx/";
-        var manifest = [
-            {id: "pop", src: "pop.ogg"},
-            //{id:"success", src:"xylophone-1.wav"},
-            //{id:"back", src:"DST-Azum.mp3"}
-            {id: "back", src: "amik.ogg"},
-            {id: "tadam", src: "tada3.ogg"},
-            {id: "finishLevel", src: "triumphal.wav"}];
-
-        createjs.Sound.addEventListener("fileload", handleLoad);
-        createjs.Sound.registerManifest(manifest, audioPath);
-
-
+    if (config.global.inside === 'cordova'){
+        MBSound.registerSound();
     }
+
 }
 function stopSound() {
     if (stopMusic === true) {
@@ -158,24 +88,10 @@ function stopSound() {
         createjs.Sound.stop();
         stopMusic = true;
     }
-
-}
-//function soundsLoaded(){
-//    console.log('inside sounds loaded');
-//    createjs.Sound.play("back",{volume:0.3,loop:-1});
-//}
-function handleLoad(event) {
-    //createjs.Sound.play(event.src);
-    //alert('completed loading sound');
-    console.log(event);
-    if (event.src === 'img/sfx/amik.ogg') {
-        createjs.Sound.play("back", {volume: 0.3, loop: -1});
-    }
-
 }
 
 function addI(res, x, y, scaleX, scaleY, call) {
-    var bitmap = new createjs.Bitmap(assets[res]);
+    var bitmap = new createjs.Bitmap(AssetsService.assets[config.assets[res]]);
     if (x != null) {
         bitmap.x = x;
     }
@@ -210,7 +126,7 @@ function handleInstructClick(evt, data) {
 }
 function assetsLoaded(e) {
     console.log('starting assetLoaded');
-    background = new createjs.Bitmap(assets[backgrondURL]);
+    background = new createjs.Bitmap(AssetsService.assets[config.assets.BACKGROUNDURL]);
     //var bounds = background.getBounds();
     //console.log('bounds' + bounds);
     var normalBackgroundH  = ch / 550 ;
@@ -218,19 +134,19 @@ function assetsLoaded(e) {
     background.scaleY = normalBackgroundH;
     stage.addChild(background);
     // filter
-    filterBack = new createjs.Bitmap(assets[filterBackURL]);
+    filterBack = new createjs.Bitmap(AssetsService.assets[config.assets.FILTERBACKURL]);
     filterBack.scaleX = normalw;
     filterBack.scaleY = normalBackgroundH;
     stage.addChild(filterBack);
     // child image
-    childbitmap = new createjs.Bitmap(childImage);
+    childbitmap = new createjs.Bitmap(AssetsService.assets[config.assets.CHILDIMAGE]);
     childbitmap.x = cw * 0.7;
     childbitmap.y = ch * 0.4;
     childbitmap.scaleX = normalw;
     childbitmap.scaleY = normalh;
     stage.addChild(childbitmap);
     // instruction
-    startBitmap = new createjs.Bitmap(instructBit);
+    startBitmap = new createjs.Bitmap(AssetsService.assets[config.assets.INSTRUCTBIT]);
     startBitmap.x = cw * 0.1;
     startBitmap.y = ch * 0.45;
     startBitmap.scaleX = normalw;
@@ -238,7 +154,7 @@ function assetsLoaded(e) {
     startBitmap.on("click", handleInstructClick);
     stage.addChild(startBitmap);
     //
-    titleIIbitmap = new createjs.Bitmap(titleII);
+    titleIIbitmap = new createjs.Bitmap(AssetsService.assets[config.assets.TITLEII]);
     titleIIbitmap.x = cw * 0.1;
     titleIIbitmap.y = ch * 0.05;
     titleIIbitmap.scaleX = normalw;
@@ -292,10 +208,9 @@ function randomIntFromInterval(min, max) {
 }
 function colorPick() {
     var colorpicker = Math.floor(Math.random() * 3);
-    var color;
-    if (colorpicker === 0) return redBaloon;
-    if (colorpicker === 1) return blueBaloon;
-    if (colorpicker === 2) return grennBaloon;
+    if (colorpicker === 0) return config.assets.REDBALLOON;
+    if (colorpicker === 1) return config.assets.BLUBALOON;
+    if (colorpicker === 2) return config.assets.GREENBALOON;
 }
 
 function setRound() {
@@ -306,21 +221,26 @@ function setRound() {
     var number5 = Math.floor(Math.random() * 100);
     var placment = Math.floor(Math.random() * 12);
     var placeArray = getPlaceArray();
-    baloons[0] = new Baloonc(50, assets[colorPick()], "#ffffff",
-        number1, assets[explosionURL], placeArray[0], canvas.height,
-        false, assets[score20Large], scoring, speed, S * 0.85);
-    baloons[1] = new Baloonc(50, assets[colorPick()], "#ffffff",
-        number2, assets[explosionURL], placeArray[1], canvas.height,
-        false, assets[score20Large], scoring, speed, S * 0.85);
-    baloons[2] = new Baloonc(50, assets[colorPick()], "#ffffff",
-        number3, assets[explosionURL], placeArray[2], canvas.height,
-        true, assets[score20Large], scoring, speed, S * 0.85);
-    baloons[3] = new Baloonc(50, assets[colorPick()], "#ffffff",
-        number4, assets[explosionURL], placeArray[3], canvas.height,
-        false, assets[score20Large], scoring, speed, S * 0.85);
-    baloons[4] = new Baloonc(50, assets[colorPick()], "#ffffff",
-        number5, assets[explosionURL], placeArray[4], canvas.height,
-        false, assets[score20Large], scoring, speed, S * 0.85);
+    baloons[0] = new Baloonc(50, AssetsService.assets[colorPick()], "#ffffff",
+        number1, AssetsService.assets[config.assets.EXPLOSIONURL], placeArray[0], canvas.height,
+        false, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, S * 0.85);
+
+    baloons[1] = new Baloonc(50, AssetsService.assets[colorPick()], "#ffffff",
+        number2, AssetsService.assets[config.assets.EXPLOSIONURL], placeArray[1], canvas.height,
+        false, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, S * 0.85);
+
+    baloons[2] = new Baloonc(50, AssetsService.assets[colorPick()], "#ffffff",
+        number3, AssetsService.assets[config.assets.EXPLOSIONURL], placeArray[2], canvas.height,
+        true, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, S * 0.85);
+
+    baloons[3] = new Baloonc(50, AssetsService.assets[colorPick()], "#ffffff",
+        number4, AssetsService.assets[config.assets.EXPLOSIONURL], placeArray[3], canvas.height,
+        false, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, S * 0.85);
+
+    baloons[4] = new Baloonc(50, AssetsService.assets[colorPick()], "#ffffff",
+        number5, AssetsService.assets[config.assets.EXPLOSIONURL], placeArray[4], canvas.height,
+        false, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, S * 0.85);
+
     stage.addChild(baloons[2]);
     stage.setChildIndex(baloons[2], 1);
     stage.addChild(baloons[0]);
