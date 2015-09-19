@@ -5,7 +5,7 @@
 var config = {
     global: {
         inside:'cordova',
-        registerSound: 'cordova',
+        registerSound: 'sound.js',
         compileWith: 'cordova'
     },
     assets: {
