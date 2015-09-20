@@ -36,18 +36,9 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        //if (config.global.registerSound === 'cordova'){
-        //    MBSound.my_media = new Media('img/sfx/amik.ogg',
-        //        // success callback
-        //        function () {
-        //            init();
-        //            console.log("playAudio():Audio Success");
-        //        },
-        //        // error callback
-        //        function (err) { console.log("playAudio():Audio Error: " + err); }
-        //    );
-        //}
+        init();
     },
+
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         console.log('Received Event: ' + id);

@@ -45,24 +45,15 @@ function init() {
     normalw = cw / 500;
     normalh = ch / 800;
     S = 1;
-    canvas.width = cw;
-    canvas.height = ch;
+    //canvas.width = cw;
+    //canvas.height = ch;
     //canvas.width= window.innerWidth;
     //canvas.height= window.innerHeight;
-    //canvas.width= 550;
-    //canvas.height= 700;
     scoring.score = 0;
-    //canvas.style.position = "absolute";
-    //canvas.style.left = 500+"px";
-    //canvas.style.top = 100+"px";
-    //canvas.width = canvaswidth;
-    //canvas.height = 550;
     document.body.appendChild(canvas);
     // initializing the stage
     stage = new createjs.Stage(canvas);
     createjs.Touch.enable(stage);//only for mobile
-    //assets = new AssetFactory();
-    //console.log('scale is: ' + S);
     ////assets.scale = S;
     ////assets.scaleMethod = ndgmr.nearestNeighborScale;
     AssetsService.init(assetsLoaded);
@@ -336,4 +327,4 @@ function onTick(e) {
     //stage.tick();
     //console.log('ending tick');
 }
-window.onload = init;
+//window.onload = init;
