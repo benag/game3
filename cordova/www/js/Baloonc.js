@@ -10,7 +10,7 @@
     Baloonc.prototype.initialize = function (baloonWidth,imgSrc,color,titleText,explosion,
         x,y,solution,positivescore,scoring,speed,S) {
         this.speed=speed;
-        this.snapToPixel = true
+        this.snapToPixel = true;
         this.Container_initialize();
         this.baloonWidth = baloonWidth;
         this._imgSrc = imgSrc;
@@ -57,43 +57,36 @@
         this.bitmapscore.y =  this.baloonWidth*0.5;
         
         
-    }
+    };
 
     Baloonc.prototype.textOnClick = function(){
         //alert('clicl from text');
-    }
+    };
     Baloonc.prototype.handleClick = function (){
         //alert('process click');
         this.removeChild(this.bitmap);
         this.removeChild(this.text);
         console.log('clicked: '+this.x);
         console.log('clicked: '+this.y);
-        //this.animation.x = this.x;
-        //this.animation.y = this.y;
-        //this.animation.play();
         this.animation.gotoAndPlay('explode');
         this.addChild(this.animation);
-        //createjs.Sound.play(JMP.SOUNDS.POP,null,0,0,0,0.8);
-        createjs.Sound.play('pop',{volume:1});
+        ////createjs.Sound.play(JMP.SOUNDS.POP,null,0,0,0,0.8);
+        //createjs.Sound.play('pop',{volume:1});
+        MBSound.play('pop',1,undefined);
         if (this.solution===true){
             this.pop=true;
             this.poptick=0;
             this.scoring.score=this.scoring.score+20;
-            createjs.Sound.play('tadam',{volume:1});
+            //createjs.Sound.play('tadam',{volume:1});
+            MBSound.play('tadam',1,undefined);
             //this.addChild(this.bitmapscore);
             //this.removeChild(this.bitmapscore);
             
         }else{
             this.pop=true;
             this.poptick=0;
-            //if (this.scoring.score>0){
-                //this.scoring.score=this.scoring.score-5;
-            //} 
-
         }
-        //this.animation.stop();
-
-    }
+    };
 
     Baloonc.prototype._tick = function () {
         this.Container_tick();
@@ -120,6 +113,6 @@
         }
         
         //console.log("Icon Ticked");
-    }
+    };
     window.Baloonc= Baloonc;
 } (window));

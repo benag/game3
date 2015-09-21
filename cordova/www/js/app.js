@@ -68,6 +68,7 @@ function init() {
 function loadSounds() {
     if (config.global.inside === 'cordova'){
         MBSound.registerSound();
+        MBSound.play('back',0.4,-1);
     }
 
 }
@@ -105,8 +106,8 @@ function handleInstructClick(evt, data) {
     stage.removeAllChildren();
     stage.addChild(background);
     var music = addI(stopmusic, 10, 7, normalw, normalh, stopSound);
-    addI(upperLine, 0, 0, normalw, normalh, undefined);
-    addI(buttomLine, 0, (canvas.height - 30), normalw, normalh, undefined);
+    addI('UPPERLINE', 0, 0, normalw, normalh, undefined);
+    addI('BUTTOMLINE', 0, (canvas.height - 23), normalw, normalh, undefined);
     stage.setChildIndex(music, 2);
     scoreText = new createjs.Text(scoring.score, "bold 25px Courier", "#ffffff");
     scoreText.x = cw * 0.48;
@@ -120,7 +121,7 @@ function assetsLoaded(e) {
     background = new createjs.Bitmap(AssetsService.assets[config.assets.BACKGROUNDURL]);
     //var bounds = background.getBounds();
     //console.log('bounds' + bounds);
-    var normalBackgroundH  = ch / 550 ;
+    var normalBackgroundH = ch / 550;
     background.scaleX = normalw;
     background.scaleY = normalBackgroundH;
     stage.addChild(background);
@@ -137,23 +138,30 @@ function assetsLoaded(e) {
     childbitmap.scaleY = normalh;
     stage.addChild(childbitmap);
     // instruction
-    startBitmap = new createjs.Bitmap(AssetsService.assets[config.assets.INSTRUCTBIT]);
-    startBitmap.x = cw * 0.1;
-    startBitmap.y = ch * 0.45;
-    startBitmap.scaleX = normalw;
-    startBitmap.scaleX = normalh;
-    startBitmap.on("click", handleInstructClick);
-    stage.addChild(startBitmap);
+    //startBitmap = new createjs.Bitmap(AssetsService.assets[config.assets.INSTRUCTBIT]);
+    //startBitmap.x = cw * 0.1;
+    //startBitmap.y = ch * 0.45;
+    //startBitmap.scaleX = normalw;
+    //startBitmap.scaleX = normalh;
+    //startBitmap.on("click", handleInstructClick);
+    //stage.addChild(startBitmap);
     //
-    titleIIbitmap = new createjs.Bitmap(AssetsService.assets[config.assets.TITLEII]);
-    titleIIbitmap.x = cw * 0.1;
-    titleIIbitmap.y = ch * 0.05;
-    titleIIbitmap.scaleX = normalw;
-    titleIIbitmap.scaleY = normalh;
-    stage.addChild(titleIIbitmap);
-    addI(stopmusic, 10, 10, normalw, normalh, stopSound);
-    createjs.Ticker.setFPS(30);
-    createjs.Ticker.addEventListener("tick", onTick);
+    //titleIIbitmap = new createjs.Bitmap(AssetsService.assets[config.assets.TITLEII]);
+    //titleIIbitmap.x = cw * 0.1;
+    //titleIIbitmap.y = ch * 0.05;
+    //titleIIbitmap.scaleX = normalw;
+    //titleIIbitmap.scaleY = normalh;
+    //stage.addChild(titleIIbitmap);
+    //addI(stopmusic, 10, 10, normalw, normalh, stopSound);
+    //createjs.Ticker.setFPS(30);
+    //createjs.Ticker.addEventListener("tick", onTick);
+    var startImage = new createjs.Bitmap(AssetsService.assets[config.assets.START]);
+    startImage.addEventListener("click", handleInstructClick );
+    startImage.x = MathBalloonWindow.CW * 0.5;
+    startImage.x = MathBalloonWindow.CH * 0.5;
+    startImage.scaleX = normalw;
+    startImage.scaleY = normalh;
+    stage.addChild(startImage);
 }
 
 
@@ -311,20 +319,10 @@ function onTick(e) {
                 setRound();
                 // currentCycle++;
                 tickIncycle = 0;
-
             }
-
-            //console.log(scoring.score);
         }
     }
     if (STATE === 'INTRO') {
-
-
     }
-
-
     stage.update();
-    //stage.tick();
-    //console.log('ending tick');
 }
-//window.onload = init;

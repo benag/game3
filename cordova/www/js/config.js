@@ -25,7 +25,8 @@ var config = {
         BUTTOMLINE: 'img/botttom-score.png',
         UPPERLINE: 'img/upper-score.png',
         SCORE20LARGE: 'img/score20Large.png',
-        STAR: 'img/star.png'
+        STAR: 'img/star.png',
+        START: 'img/start.png'
 
     }
 

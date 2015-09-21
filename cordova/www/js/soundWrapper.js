@@ -22,6 +22,21 @@ var MBSound = {
             this.finishLevel = new Media('/android_asset/www/img/sfx/triumphal.wav', function () {}, function (err) {});
         }
     },
+    play: function (soundToPlay,volume, loop) {
+        var settings = {};
+        if (volume != undefined ){
+            settings.volume = volume;
+        }
+        if (loop != undefined ){
+            settings.loop = loop;
+        }
+        if (config.global.registerSound === 'sound.js'){
+            createjs.Sound.play(soundToPlay, settings );
+        }else{
+            this[soundToPlay].play();
+        }
+
+    },
     registerSoundJSSound: function () {
         var compileArray = [createjs.HTMLAudioPlugin
             //createjs.WebAudioPlugin
@@ -56,7 +71,6 @@ var MBSound = {
             createjs.Sound.play("back", {volume: 0.3, loop: -1});
         }
     }
-
 
 };
 
