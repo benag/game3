@@ -2,33 +2,14 @@
 
 
 var canvas, stage, ONCE = true, assets,
-
-    background,
-    STATE = 'INTRO',
-    startURL,
-    currentCycle = 0,
-    baloons = [],
-    TickBetweenCycles = 200,
-    tickIncycle = 199,
-    scoring = {},
-    scoreText,
-    start,
-    menu,
-    childbitmap,
-    startBitmap,
-    stopMusic = false,
-    titleIIbitmap,
-    S, cw, ch, normalw, normalh,
-    speed = 0.8,
-    level = 1,
-    endLevel,
-    tmpTick = 1,
-    yourscourse,
-    startingLevel,
-    stopmusic,
-    buttomLine,
-    upperLine,
-    filterBack;
+    background,STATE = 'INTRO',startURL,
+    currentCycle = 0,baloons = [],
+    TickBetweenCycles = 200,tickIncycle = 199,
+    scoring = {},scoreText,start,menu,
+    childbitmap,startBitmap,stopMusic = false,
+    titleIIbitmap,S, cw, ch, normalw, normalh,
+    speed = 0.8,level = 1,endLevel,tmpTick = 1,
+    yourscourse,startingLevel,stopmusic,filterBack;
 
 
 function init() {
@@ -39,29 +20,21 @@ function init() {
     window.addEventListener('resize', MathBalloonWindow.resize, false);
     cw = ndgmr.getScreenWidth();
     ch = ndgmr.getScreenHeight();
-    //S = Math.min(cw/800,ch/480);
-    //S = Math.min(CW/800,CH/480);
-    //S = ndgmr.snapValue(S*(window.devicePixelRatio||1),0.5);
     normalw = cw / 500;
     normalh = ch / 800;
     S = 1;
-    //canvas.width = cw;
-    //canvas.height = ch;
-    //canvas.width= window.innerWidth;
-    //canvas.height= window.innerHeight;
     scoring.score = 0;
     document.body.appendChild(canvas);
     // initializing the stage
     stage = new createjs.Stage(canvas);
     createjs.Touch.enable(stage);//only for mobile
-    ////assets.scale = S;
-    ////assets.scaleMethod = ndgmr.nearestNeighborScale;
     AssetsService.init(assetsLoaded);
     AssetsService.registerAssets();
     start = '';
     menu = '';
     startURL = '';
     loadSounds();
+    addWrapper.init();
     MathBalloonWindow.resize();
 }
 
@@ -103,21 +76,31 @@ function addI(res, x, y, scaleX, scaleY, call) {
 
 function handleInstructClick(evt, data) {
 
-    stage.removeAllChildren();
-    stage.addChild(background);
-    var music = addI(stopmusic, 10, 7, normalw, normalh, stopSound);
-    addI('UPPERLINE', 0, 0, normalw, normalh, undefined);
-    addI('BUTTOMLINE', 0, (canvas.height - 23), normalw, normalh, undefined);
-    stage.setChildIndex(music, 2);
-    scoreText = new createjs.Text(scoring.score, "bold 25px Courier", "#ffffff");
-    scoreText.x = cw * 0.48;
-    scoreText.y = ch * 0.025;
-    stage.addChild(scoreText);
-    STATE = 'GAME';
+
+    AdMob.prepareInterstitial( {adId:addWrapper.admobid.interstitial, autoShow:true} );
+    AdMob.showInterstitial();
+    document.addEventListener('onAdDismiss', function(e){
+        stage.removeAllChildren();
+        stage.addChild(background);
+        var music = addI(stopmusic, 10, 7, normalw, normalh, stopSound);
+        addI('UPPERLINE', 0, 0, normalw, normalh, undefined);
+        addI('BUTTOMLINE', 0, (canvas.height - 23), normalw, normalh, undefined);
+        addI('SOUNDOFF',50,5,1,1,undefined);
+        stage.setChildIndex(music, 2);
+        scoreText = new createjs.Text(scoring.score, "bold 25px Courier", "#ffffff");
+        scoreText.x = cw * 0.46;
+        scoreText.y = ch * 0.025;
+        stage.addChild(scoreText);
+        STATE = 'GAME';
+    });
+
 
 }
 function assetsLoaded(e) {
-    console.log('starting assetLoaded');
+    AdMob.createBanner( {
+        adId: addWrapper.admobid.banner,
+        position: AdMob.AD_POSITION.BOTTOM_CENTER,
+        autoShow: true } );
     background = new createjs.Bitmap(AssetsService.assets[config.assets.BACKGROUNDURL]);
     //var bounds = background.getBounds();
     //console.log('bounds' + bounds);
@@ -138,30 +121,23 @@ function assetsLoaded(e) {
     childbitmap.scaleY = normalh;
     stage.addChild(childbitmap);
     // instruction
-    //startBitmap = new createjs.Bitmap(AssetsService.assets[config.assets.INSTRUCTBIT]);
-    //startBitmap.x = cw * 0.1;
-    //startBitmap.y = ch * 0.45;
-    //startBitmap.scaleX = normalw;
-    //startBitmap.scaleX = normalh;
-    //startBitmap.on("click", handleInstructClick);
-    //stage.addChild(startBitmap);
-    //
-    //titleIIbitmap = new createjs.Bitmap(AssetsService.assets[config.assets.TITLEII]);
-    //titleIIbitmap.x = cw * 0.1;
-    //titleIIbitmap.y = ch * 0.05;
-    //titleIIbitmap.scaleX = normalw;
-    //titleIIbitmap.scaleY = normalh;
-    //stage.addChild(titleIIbitmap);
-    //addI(stopmusic, 10, 10, normalw, normalh, stopSound);
-    //createjs.Ticker.setFPS(30);
-    //createjs.Ticker.addEventListener("tick", onTick);
-    var startImage = new createjs.Bitmap(AssetsService.assets[config.assets.START]);
-    startImage.addEventListener("click", handleInstructClick );
-    startImage.x = MathBalloonWindow.CW * 0.5;
-    startImage.x = MathBalloonWindow.CH * 0.5;
-    startImage.scaleX = normalw;
-    startImage.scaleY = normalh;
-    stage.addChild(startImage);
+    startBitmap = new createjs.Bitmap(AssetsService.assets[config.assets.INSTRUCTBIT]);
+    startBitmap.x = cw * 0.1;
+    startBitmap.y = ch * 0.45;
+    startBitmap.scaleX = normalw;
+    startBitmap.scaleX = normalh;
+    startBitmap.on("click", handleInstructClick);
+    stage.addChild(startBitmap);
+
+    titleIIbitmap = new createjs.Bitmap(AssetsService.assets[config.assets.TITLEII]);
+    titleIIbitmap.x = cw * 0.1;
+    titleIIbitmap.y = ch * 0.05;
+    titleIIbitmap.scaleX = normalw;
+    titleIIbitmap.scaleY = normalh;
+    stage.addChild(titleIIbitmap);
+    addI(stopmusic, 10, 10, normalw, normalh, stopSound);
+    createjs.Ticker.setFPS(30);
+    createjs.Ticker.addEventListener("tick", onTick);
 }
 
 
@@ -218,27 +194,27 @@ function setRound() {
     var number3 = number1 * number2;
     var number4 = Math.floor(Math.random() * 100);
     var number5 = Math.floor(Math.random() * 100);
-    var placment = Math.floor(Math.random() * 12);
+    //var placment = Math.floor(Math.random() * 12);
     var placeArray = getPlaceArray();
     baloons[0] = new Baloonc(50, AssetsService.assets[colorPick()], "#ffffff",
         number1, AssetsService.assets[config.assets.EXPLOSIONURL], placeArray[0], canvas.height,
-        false, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, S * 0.85);
+        false, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, normalw * 0.8);
 
     baloons[1] = new Baloonc(50, AssetsService.assets[colorPick()], "#ffffff",
         number2, AssetsService.assets[config.assets.EXPLOSIONURL], placeArray[1], canvas.height,
-        false, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, S * 0.85);
+        false, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, normalw * 0.8);
 
     baloons[2] = new Baloonc(50, AssetsService.assets[colorPick()], "#ffffff",
         number3, AssetsService.assets[config.assets.EXPLOSIONURL], placeArray[2], canvas.height,
-        true, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, S * 0.85);
+        true, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, normalw * 0.8);
 
     baloons[3] = new Baloonc(50, AssetsService.assets[colorPick()], "#ffffff",
         number4, AssetsService.assets[config.assets.EXPLOSIONURL], placeArray[3], canvas.height,
-        false, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, S * 0.85);
+        false, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, normalw * 0.8);
 
     baloons[4] = new Baloonc(50, AssetsService.assets[colorPick()], "#ffffff",
         number5, AssetsService.assets[config.assets.EXPLOSIONURL], placeArray[4], canvas.height,
-        false, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, S * 0.85);
+        false, AssetsService.assets[config.assets.SCORE20LARGE], scoring, speed, normalw * 0.8);
 
     stage.addChild(baloons[2]);
     stage.setChildIndex(baloons[2], 1);
@@ -314,10 +290,10 @@ function onTick(e) {
         if (tickIncycle === TickBetweenCycles) {
             if (currentCycle === 10) {
                 setLevel();
-                tickIncycle--;
+                tickIncycle = 0;
             } else {
                 setRound();
-                // currentCycle++;
+                currentCycle++;
                 tickIncycle = 0;
             }
         }
@@ -326,3 +302,22 @@ function onTick(e) {
     }
     stage.update();
 }
+
+
+//S = Math.min(cw/800,ch/480);
+//S = Math.min(CW/800,CH/480);
+//S = ndgmr.snapValue(S*(window.devicePixelRatio||1),0.5);
+
+//canvas.width = cw;
+//canvas.height = ch;
+//canvas.width= window.innerWidth;
+//canvas.height= window.innerHeight;
+////assets.scale = S;
+////assets.scaleMethod = ndgmr.nearestNeighborScale;
+//var startImage = new createjs.Bitmap(AssetsService.assets[config.assets.START]);
+//startImage.addEventListener("click", handleInstructClick );
+//startImage.x = MathBalloonWindow.CW * 0.5;
+//startImage.x = MathBalloonWindow.CH * 0.5;
+//startImage.scaleX = normalw;
+//startImage.scaleY = normalh;
+//stage.addChild(startImage);

@@ -34,7 +34,7 @@
             images: [explosion],
             frames: {width:64, height:64, regX:32, regY:32,count:10},
             animations: {'explode': [0, 10,false]}
-        }
+        };
         
         this.spritesheet = new createjs.SpriteSheet(this.data);
 
@@ -60,7 +60,7 @@
     };
 
     Baloonc.prototype.textOnClick = function(){
-        //alert('clicl from text');
+
     };
     Baloonc.prototype.handleClick = function (){
         //alert('process click');

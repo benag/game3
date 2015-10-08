@@ -28,7 +28,7 @@ var AssetsService = {
             config.assets.SCORE20LARGE,
             config.assets.UPPERLINE,
             config.assets.BUTTOMLINE,
-            config.assets.START
+            config.assets.SOUNDOFF
         ]);
     }
 

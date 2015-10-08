@@ -26,7 +26,8 @@ var config = {
         UPPERLINE: 'img/upper-score.png',
         SCORE20LARGE: 'img/score20Large.png',
         STAR: 'img/star.png',
-        START: 'img/start.png'
+        SOUNDOFF: 'img/Sound-off-icon.png'
+
 
     }
 
