@@ -41,7 +41,7 @@ function init() {
 function loadSounds() {
     if (config.global.inside === 'cordova'){
         MBSound.registerSound();
-        MBSound.play('back',0.4,-1);
+        MBSound.play('back',0.2,-1);
     }
 
 }
@@ -85,7 +85,7 @@ function handleInstructClick(evt, data) {
         var music = addI(stopmusic, 10, 7, normalw, normalh, stopSound);
         addI('UPPERLINE', 0, 0, normalw, normalh, undefined);
         addI('BUTTOMLINE', 0, (canvas.height - 23), normalw, normalh, undefined);
-        addI('SOUNDOFF',50,5,1,1,undefined);
+        addI('SOUNDOFF',50,5,0.5,0.5,undefined);
         stage.setChildIndex(music, 2);
         scoreText = new createjs.Text(scoring.score, "bold 25px Courier", "#ffffff");
         scoreText.x = cw * 0.46;

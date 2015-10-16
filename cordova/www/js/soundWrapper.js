@@ -16,7 +16,7 @@ var MBSound = {
         if (config.global.registerSound === 'cordova') {
             //MBSound.my_media = new Media('cdvfile://localhost/img/sfx/amik.ogg',
             //my_media = new Media('cdvfile://localhost/www/img/sfx/amik.ogg',
-            this.back = new Media('/android_asset/www/img/sfx/amik.ogg', function () {}, function (err) {});
+            this.back = new Media('/android_asset/www/img/sfx/B-3.mp3', function () {}, function (err) {});
             this.pop  = new Media('/android_asset/www/img/sfx/pop.ogg', function () {}, function (err) {});
             this.tadam = new Media('/android_asset/www/img/sfx/tada3.ogg', function () {}, function (err) {});
             this.finishLevel = new Media('/android_asset/www/img/sfx/triumphal.wav', function () {}, function (err) {});

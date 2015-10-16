@@ -1,0 +1,449 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'yo',
+1 verbose cli   'bower',
+1 verbose cli   'grunt-cli',
+1 verbose cli   'gulp' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.39
+4 verbose cache add [ 'yo', null ]
+5 verbose cache add name=undefined spec="yo" args=["yo",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'yo',
+6 verbose parsed url   path: 'yo',
+6 verbose parsed url   href: 'yo' }
+7 verbose cache add [ 'bower', null ]
+8 verbose cache add name=undefined spec="bower" args=["bower",null]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: 'bower',
+9 verbose parsed url   path: 'bower',
+9 verbose parsed url   href: 'bower' }
+10 verbose cache add [ 'grunt-cli', null ]
+11 verbose cache add name=undefined spec="grunt-cli" args=["grunt-cli",null]
+12 verbose parsed url { protocol: null,
+12 verbose parsed url   slashes: null,
+12 verbose parsed url   auth: null,
+12 verbose parsed url   host: null,
+12 verbose parsed url   port: null,
+12 verbose parsed url   hostname: null,
+12 verbose parsed url   hash: null,
+12 verbose parsed url   search: null,
+12 verbose parsed url   query: null,
+12 verbose parsed url   pathname: 'grunt-cli',
+12 verbose parsed url   path: 'grunt-cli',
+12 verbose parsed url   href: 'grunt-cli' }
+13 verbose cache add [ 'gulp', null ]
+14 verbose cache add name=undefined spec="gulp" args=["gulp",null]
+15 verbose parsed url { protocol: null,
+15 verbose parsed url   slashes: null,
+15 verbose parsed url   auth: null,
+15 verbose parsed url   host: null,
+15 verbose parsed url   port: null,
+15 verbose parsed url   hostname: null,
+15 verbose parsed url   hash: null,
+15 verbose parsed url   search: null,
+15 verbose parsed url   query: null,
+15 verbose parsed url   pathname: 'gulp',
+15 verbose parsed url   path: 'gulp',
+15 verbose parsed url   href: 'gulp' }
+16 silly lockFile c41975d1-yo yo
+17 verbose lock yo /home/ben/.npm/c41975d1-yo.lock
+18 silly lockFile 206e3ce5-bower bower
+19 verbose lock bower /home/ben/.npm/206e3ce5-bower.lock
+20 silly lockFile 671ef8ac-grunt-cli grunt-cli
+21 verbose lock grunt-cli /home/ben/.npm/671ef8ac-grunt-cli.lock
+22 silly lockFile 9750c68d-gulp gulp
+23 verbose lock gulp /home/ben/.npm/9750c68d-gulp.lock
+24 silly lockFile c41975d1-yo yo
+25 silly lockFile c41975d1-yo yo
+26 silly lockFile 206e3ce5-bower bower
+27 silly lockFile 206e3ce5-bower bower
+28 silly lockFile 671ef8ac-grunt-cli grunt-cli
+29 silly lockFile 671ef8ac-grunt-cli grunt-cli
+30 silly lockFile 9750c68d-gulp gulp
+31 silly lockFile 9750c68d-gulp gulp
+32 verbose addNamed [ 'yo', '' ]
+33 verbose addNamed [ null, '*' ]
+34 silly lockFile d937c28e-yo yo@
+35 verbose lock yo@ /home/ben/.npm/d937c28e-yo.lock
+36 verbose addNamed [ 'bower', '' ]
+37 verbose addNamed [ null, '*' ]
+38 silly lockFile 1240aab1-bower bower@
+39 verbose lock bower@ /home/ben/.npm/1240aab1-bower.lock
+40 verbose addNamed [ 'grunt-cli', '' ]
+41 verbose addNamed [ null, '*' ]
+42 silly lockFile d63f3d0b-grunt-cli grunt-cli@
+43 verbose lock grunt-cli@ /home/ben/.npm/d63f3d0b-grunt-cli.lock
+44 verbose addNamed [ 'gulp', '' ]
+45 verbose addNamed [ null, '*' ]
+46 silly lockFile 72f4391e-gulp gulp@
+47 verbose lock gulp@ /home/ben/.npm/72f4391e-gulp.lock
+48 silly addNameRange { name: 'yo', range: '*', hasData: false }
+49 verbose request where is /yo
+50 verbose request registry https://registry.npmjs.org/
+51 verbose request id a3da5447855f49cc
+52 verbose url raw /yo
+53 verbose url resolving [ 'https://registry.npmjs.org/', './yo' ]
+54 verbose url resolved https://registry.npmjs.org/yo
+55 verbose request where is https://registry.npmjs.org/yo
+56 info trying registry request attempt 1 at 18:20:58
+57 http GET https://registry.npmjs.org/yo
+58 silly addNameRange { name: 'bower', range: '*', hasData: false }
+59 silly addNameRange { name: 'grunt-cli', range: '*', hasData: false }
+60 silly addNameRange { name: 'gulp', range: '*', hasData: false }
+61 verbose request where is /bower
+62 verbose request registry https://registry.npmjs.org/
+63 verbose url raw /bower
+64 verbose url resolving [ 'https://registry.npmjs.org/', './bower' ]
+65 verbose url resolved https://registry.npmjs.org/bower
+66 verbose request where is https://registry.npmjs.org/bower
+67 info trying registry request attempt 1 at 18:20:58
+68 http GET https://registry.npmjs.org/bower
+69 verbose request where is /gulp
+70 verbose request registry https://registry.npmjs.org/
+71 verbose url raw /gulp
+72 verbose url resolving [ 'https://registry.npmjs.org/', './gulp' ]
+73 verbose url resolved https://registry.npmjs.org/gulp
+74 verbose request where is https://registry.npmjs.org/gulp
+75 info trying registry request attempt 1 at 18:20:58
+76 http GET https://registry.npmjs.org/gulp
+77 verbose request where is /grunt-cli
+78 verbose request registry https://registry.npmjs.org/
+79 verbose url raw /grunt-cli
+80 verbose url resolving [ 'https://registry.npmjs.org/', './grunt-cli' ]
+81 verbose url resolved https://registry.npmjs.org/grunt-cli
+82 verbose request where is https://registry.npmjs.org/grunt-cli
+83 info trying registry request attempt 1 at 18:20:58
+84 verbose etag "2CAHK3Q2AC2FWHJAN98LPSCUC"
+85 http GET https://registry.npmjs.org/grunt-cli
+86 http 304 https://registry.npmjs.org/grunt-cli
+87 silly registry.get cb [ 304,
+87 silly registry.get   { date: 'Thu, 24 Sep 2015 15:20:58 GMT',
+87 silly registry.get     via: '1.1 varnish',
+87 silly registry.get     'cache-control': 'max-age=60',
+87 silly registry.get     etag: '"2CAHK3Q2AC2FWHJAN98LPSCUC"',
+87 silly registry.get     age: '46',
+87 silly registry.get     connection: 'keep-alive',
+87 silly registry.get     'x-served-by': 'cache-fra1231-FRA',
+87 silly registry.get     'x-cache': 'HIT',
+87 silly registry.get     'x-cache-hits': '1',
+87 silly registry.get     'x-timer': 'S1443108058.508479,VS0,VE0',
+87 silly registry.get     vary: 'Accept' } ]
+88 verbose etag https://registry.npmjs.org/grunt-cli from cache
+89 silly addNameRange number 2 { name: 'grunt-cli', range: '*', hasData: true }
+90 silly addNameRange versions [ 'grunt-cli',
+90 silly addNameRange   [ '0.1.0',
+90 silly addNameRange     '0.1.1',
+90 silly addNameRange     '0.1.2',
+90 silly addNameRange     '0.1.3',
+90 silly addNameRange     '0.1.4',
+90 silly addNameRange     '0.1.5',
+90 silly addNameRange     '0.1.6',
+90 silly addNameRange     '0.1.7',
+90 silly addNameRange     '0.1.8',
+90 silly addNameRange     '0.1.9',
+90 silly addNameRange     '0.1.10',
+90 silly addNameRange     '0.1.11',
+90 silly addNameRange     '0.1.12',
+90 silly addNameRange     '0.1.13' ] ]
+91 verbose addNamed [ 'grunt-cli', '0.1.13' ]
+92 verbose addNamed [ '0.1.13', '0.1.13' ]
+93 silly lockFile 28997503-grunt-cli-0-1-13 grunt-cli@0.1.13
+94 verbose lock grunt-cli@0.1.13 /home/ben/.npm/28997503-grunt-cli-0-1-13.lock
+95 http 200 https://registry.npmjs.org/bower
+96 silly registry.get cb [ 200,
+96 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+96 silly registry.get     etag: '"9P8CWH4BFQQI7BXIBJ8P26USD"',
+96 silly registry.get     'content-type': 'application/json',
+96 silly registry.get     'cache-control': 'max-age=60',
+96 silly registry.get     'content-length': '122812',
+96 silly registry.get     'accept-ranges': 'bytes',
+96 silly registry.get     date: 'Thu, 24 Sep 2015 15:20:58 GMT',
+96 silly registry.get     via: '1.1 varnish',
+96 silly registry.get     age: '42',
+96 silly registry.get     connection: 'keep-alive',
+96 silly registry.get     'x-served-by': 'cache-fra1245-FRA',
+96 silly registry.get     'x-cache': 'HIT',
+96 silly registry.get     'x-cache-hits': '1',
+96 silly registry.get     'x-timer': 'S1443108058.515288,VS0,VE0',
+96 silly registry.get     vary: 'Accept' } ]
+97 silly addNameRange number 2 { name: 'bower', range: '*', hasData: true }
+98 silly addNameRange versions [ 'bower',
+98 silly addNameRange   [ '0.1.0',
+98 silly addNameRange     '0.1.2',
+98 silly addNameRange     '0.1.3',
+98 silly addNameRange     '0.2.0',
+98 silly addNameRange     '0.3.0',
+98 silly addNameRange     '0.3.1',
+98 silly addNameRange     '0.3.2',
+98 silly addNameRange     '0.4.0',
+98 silly addNameRange     '0.5.0',
+98 silly addNameRange     '0.5.1',
+98 silly addNameRange     '0.6.0',
+98 silly addNameRange     '0.6.1',
+98 silly addNameRange     '0.6.2',
+98 silly addNameRange     '0.6.3',
+98 silly addNameRange     '0.6.4',
+98 silly addNameRange     '0.6.5',
+98 silly addNameRange     '0.6.6',
+98 silly addNameRange     '0.6.7',
+98 silly addNameRange     '0.6.8',
+98 silly addNameRange     '0.7.0',
+98 silly addNameRange     '0.7.1',
+98 silly addNameRange     '0.8.0',
+98 silly addNameRange     '0.8.1',
+98 silly addNameRange     '0.8.2',
+98 silly addNameRange     '0.8.3',
+98 silly addNameRange     '0.8.4',
+98 silly addNameRange     '0.8.5',
+98 silly addNameRange     '0.8.6',
+98 silly addNameRange     '0.9.0',
+98 silly addNameRange     '0.9.1',
+98 silly addNameRange     '0.9.2',
+98 silly addNameRange     '0.10.0',
+98 silly addNameRange     '1.0.0',
+98 silly addNameRange     '1.0.1',
+98 silly addNameRange     '1.0.2',
+98 silly addNameRange     '1.0.3',
+98 silly addNameRange     '1.1.0',
+98 silly addNameRange     '1.1.1',
+98 silly addNameRange     '1.1.2',
+98 silly addNameRange     '1.2.0',
+98 silly addNameRange     '1.2.1',
+98 silly addNameRange     '1.2.2',
+98 silly addNameRange     '1.2.3',
+98 silly addNameRange     '1.2.4',
+98 silly addNameRange     '1.2.5',
+98 silly addNameRange     '1.2.6',
+98 silly addNameRange     '1.2.7',
+98 silly addNameRange     '1.2.8',
+98 silly addNameRange     '1.3.0',
+98 silly addNameRange     '1.3.1',
+98 silly addNameRange     '1.3.2',
+98 silly addNameRange     '1.3.3',
+98 silly addNameRange     '1.3.4',
+98 silly addNameRange     '1.3.5',
+98 silly addNameRange     '1.3.6',
+98 silly addNameRange     '1.3.7',
+98 silly addNameRange     '1.3.8',
+98 silly addNameRange     '1.3.9',
+98 silly addNameRange     '1.3.10',
+98 silly addNameRange     '1.3.11',
+98 silly addNameRange     '1.3.12',
+98 silly addNameRange     '1.4.0',
+98 silly addNameRange     '1.4.1',
+98 silly addNameRange     '1.5.0',
+98 silly addNameRange     '1.5.1',
+98 silly addNameRange     '1.5.2',
+98 silly addNameRange     '1.5.3' ] ]
+99 verbose addNamed [ 'bower', '1.5.3' ]
+100 verbose addNamed [ '1.5.3', '1.5.3' ]
+101 silly lockFile a87c38db-bower-1-5-3 bower@1.5.3
+102 verbose lock bower@1.5.3 /home/ben/.npm/a87c38db-bower-1-5-3.lock
+103 silly lockFile 3a55fcca--npmjs-org-bower-bower-1-5-3-tgz https://registry.npmjs.org/bower/-/bower-1.5.3.tgz
+104 verbose lock https://registry.npmjs.org/bower/-/bower-1.5.3.tgz /home/ben/.npm/3a55fcca--npmjs-org-bower-bower-1-5-3-tgz.lock
+105 verbose addRemoteTarball [ 'https://registry.npmjs.org/bower/-/bower-1.5.3.tgz',
+105 verbose addRemoteTarball   'ee5d7952e114e30b18795e20e9fefcc5b4cf963d' ]
+106 info retry fetch attempt 1 at 18:20:58
+107 verbose fetch to= /tmp/npm-4301-pnllsT6j/registry.npmjs.org/bower/-/bower-1.5.3.tgz
+108 http GET https://registry.npmjs.org/bower/-/bower-1.5.3.tgz
+109 http 200 https://registry.npmjs.org/gulp
+110 silly registry.get cb [ 200,
+110 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+110 silly registry.get     etag: '"7371IMIOQQE2LFSWQOJ9Z7KF9"',
+110 silly registry.get     'content-type': 'application/json',
+110 silly registry.get     'cache-control': 'max-age=60',
+110 silly registry.get     'content-length': '106682',
+110 silly registry.get     'accept-ranges': 'bytes',
+110 silly registry.get     date: 'Thu, 24 Sep 2015 15:20:58 GMT',
+110 silly registry.get     via: '1.1 varnish',
+110 silly registry.get     age: '35',
+110 silly registry.get     connection: 'keep-alive',
+110 silly registry.get     'x-served-by': 'cache-fra1226-FRA',
+110 silly registry.get     'x-cache': 'HIT',
+110 silly registry.get     'x-cache-hits': '1',
+110 silly registry.get     'x-timer': 'S1443108058.522883,VS0,VE0',
+110 silly registry.get     vary: 'Accept' } ]
+111 silly addNameRange number 2 { name: 'gulp', range: '*', hasData: true }
+112 silly addNameRange versions [ 'gulp',
+112 silly addNameRange   [ '0.0.1',
+112 silly addNameRange     '0.0.2',
+112 silly addNameRange     '0.0.3',
+112 silly addNameRange     '0.0.4',
+112 silly addNameRange     '0.0.5',
+112 silly addNameRange     '0.0.7',
+112 silly addNameRange     '0.0.8',
+112 silly addNameRange     '0.0.9',
+112 silly addNameRange     '0.1.0',
+112 silly addNameRange     '0.2.0',
+112 silly addNameRange     '1.0.0',
+112 silly addNameRange     '1.1.0',
+112 silly addNameRange     '1.2.0',
+112 silly addNameRange     '1.2.1',
+112 silly addNameRange     '2.0.0',
+112 silly addNameRange     '2.0.1',
+112 silly addNameRange     '2.1.0',
+112 silly addNameRange     '2.2.0',
+112 silly addNameRange     '2.3.0',
+112 silly addNameRange     '2.4.0',
+112 silly addNameRange     '2.4.1',
+112 silly addNameRange     '2.6.0',
+112 silly addNameRange     '2.6.1',
+112 silly addNameRange     '2.7.0',
+112 silly addNameRange     '3.0.0',
+112 silly addNameRange     '3.1.1',
+112 silly addNameRange     '3.1.2',
+112 silly addNameRange     '3.1.3',
+112 silly addNameRange     '3.1.4',
+112 silly addNameRange     '3.2.0',
+112 silly addNameRange     '3.2.1',
+112 silly addNameRange     '3.2.2',
+112 silly addNameRange     '3.2.3',
+112 silly addNameRange     '3.2.4',
+112 silly addNameRange     '3.2.5',
+112 silly addNameRange     '3.3.0',
+112 silly addNameRange     '3.3.1',
+112 silly addNameRange     '3.3.2',
+112 silly addNameRange     '3.3.4',
+112 silly addNameRange     '3.4.0',
+112 silly addNameRange     '3.5.0',
+112 silly addNameRange     '3.5.1',
+112 silly addNameRange     '3.5.2',
+112 silly addNameRange     '3.5.5',
+112 silly addNameRange     '3.5.6',
+112 silly addNameRange     '3.6.0',
+112 silly addNameRange     '3.6.1',
+112 silly addNameRange     '3.6.2',
+112 silly addNameRange     '3.7.0',
+112 silly addNameRange     '3.8.0',
+112 silly addNameRange     '3.8.1',
+112 silly addNameRange     '3.8.2',
+112 silly addNameRange     '3.8.3',
+112 silly addNameRange     '3.8.4',
+112 silly addNameRange     '3.8.5',
+112 silly addNameRange     '3.8.6',
+112 silly addNameRange     '3.8.7',
+112 silly addNameRange     '3.8.8',
+112 silly addNameRange     '3.8.9',
+112 silly addNameRange     '3.8.10',
+112 silly addNameRange     '3.8.11',
+112 silly addNameRange     '3.9.0' ] ]
+113 verbose addNamed [ 'gulp', '3.9.0' ]
+114 verbose addNamed [ '3.9.0', '3.9.0' ]
+115 silly lockFile c2697a61-gulp-3-9-0 gulp@3.9.0
+116 verbose lock gulp@3.9.0 /home/ben/.npm/c2697a61-gulp-3-9-0.lock
+117 http 200 https://registry.npmjs.org/yo
+118 silly registry.get cb [ 200,
+118 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+118 silly registry.get     etag: '"CF3CN93GGPZ6ZQW0OL35BAIOR"',
+118 silly registry.get     'content-type': 'application/json',
+118 silly registry.get     'cache-control': 'max-age=60',
+118 silly registry.get     'content-length': '36657',
+118 silly registry.get     'accept-ranges': 'bytes',
+118 silly registry.get     date: 'Thu, 24 Sep 2015 15:20:58 GMT',
+118 silly registry.get     via: '1.1 varnish',
+118 silly registry.get     age: '0',
+118 silly registry.get     connection: 'keep-alive',
+118 silly registry.get     'x-served-by': 'cache-fra1248-FRA',
+118 silly registry.get     'x-cache': 'HIT',
+118 silly registry.get     'x-cache-hits': '1',
+118 silly registry.get     'x-timer': 'S1443108058.505134,VS0,VE102',
+118 silly registry.get     vary: 'Accept' } ]
+119 silly addNameRange number 2 { name: 'yo', range: '*', hasData: true }
+120 silly addNameRange versions [ 'yo',
+120 silly addNameRange   [ '1.1.0',
+120 silly addNameRange     '1.1.1',
+120 silly addNameRange     '1.1.2',
+120 silly addNameRange     '1.2.0',
+120 silly addNameRange     '1.2.1',
+120 silly addNameRange     '1.3.0',
+120 silly addNameRange     '1.3.2',
+120 silly addNameRange     '1.3.3',
+120 silly addNameRange     '1.4.6',
+120 silly addNameRange     '1.4.7',
+120 silly addNameRange     '1.4.8' ] ]
+121 verbose addNamed [ 'yo', '1.4.8' ]
+122 verbose addNamed [ '1.4.8', '1.4.8' ]
+123 silly lockFile 94885abb-yo-1-4-8 yo@1.4.8
+124 verbose lock yo@1.4.8 /home/ben/.npm/94885abb-yo-1-4-8.lock
+125 silly lockFile 4ddb19e5-gistry-npmjs-org-yo-yo-1-4-8-tgz https://registry.npmjs.org/yo/-/yo-1.4.8.tgz
+126 verbose lock https://registry.npmjs.org/yo/-/yo-1.4.8.tgz /home/ben/.npm/4ddb19e5-gistry-npmjs-org-yo-yo-1-4-8-tgz.lock
+127 verbose addRemoteTarball [ 'https://registry.npmjs.org/yo/-/yo-1.4.8.tgz',
+127 verbose addRemoteTarball   'f045654e1afd29d09021bd78f9f2c063599ffa1c' ]
+128 silly lockFile af4766b8-ry-npmjs-org-gulp-gulp-3-9-0-tgz https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz
+129 verbose lock https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz /home/ben/.npm/af4766b8-ry-npmjs-org-gulp-gulp-3-9-0-tgz.lock
+130 info retry fetch attempt 1 at 18:20:58
+131 verbose fetch to= /tmp/npm-4301-pnllsT6j/registry.npmjs.org/yo/-/yo-1.4.8.tgz
+132 http GET https://registry.npmjs.org/yo/-/yo-1.4.8.tgz
+133 verbose addRemoteTarball [ 'https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz',
+133 verbose addRemoteTarball   'cf1fba4cb558bb8c6ae6c9613f583ae2620d214a' ]
+134 info retry fetch attempt 1 at 18:20:58
+135 verbose fetch to= /tmp/npm-4301-pnllsT6j/registry.npmjs.org/gulp/-/gulp-3.9.0.tgz
+136 http GET https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz
+137 silly lockFile ab76c46e-g-grunt-cli-grunt-cli-0-1-13-tgz https://registry.npmjs.org/grunt-cli/-/grunt-cli-0.1.13.tgz
+138 verbose lock https://registry.npmjs.org/grunt-cli/-/grunt-cli-0.1.13.tgz /home/ben/.npm/ab76c46e-g-grunt-cli-grunt-cli-0-1-13-tgz.lock
+139 verbose addRemoteTarball [ 'https://registry.npmjs.org/grunt-cli/-/grunt-cli-0.1.13.tgz',
+139 verbose addRemoteTarball   'e9ebc4047631f5012d922770c39378133cad10f4' ]
+140 info retry fetch attempt 1 at 18:20:59
+141 verbose fetch to= /tmp/npm-4301-pnllsT6j/registry.npmjs.org/grunt-cli/-/grunt-cli-0.1.13.tgz
+142 http GET https://registry.npmjs.org/grunt-cli/-/grunt-cli-0.1.13.tgz
+143 http 200 https://registry.npmjs.org/yo/-/yo-1.4.8.tgz
+144 http 200 https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz
+145 http 200 https://registry.npmjs.org/bower/-/bower-1.5.3.tgz
+146 silly lockFile af4766b8-ry-npmjs-org-gulp-gulp-3-9-0-tgz https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz
+147 silly lockFile af4766b8-ry-npmjs-org-gulp-gulp-3-9-0-tgz https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz
+148 silly lockFile c2697a61-gulp-3-9-0 gulp@3.9.0
+149 silly lockFile c2697a61-gulp-3-9-0 gulp@3.9.0
+150 silly lockFile 72f4391e-gulp gulp@
+151 silly lockFile 72f4391e-gulp gulp@
+152 silly lockFile 4ddb19e5-gistry-npmjs-org-yo-yo-1-4-8-tgz https://registry.npmjs.org/yo/-/yo-1.4.8.tgz
+153 silly lockFile 4ddb19e5-gistry-npmjs-org-yo-yo-1-4-8-tgz https://registry.npmjs.org/yo/-/yo-1.4.8.tgz
+154 silly lockFile 94885abb-yo-1-4-8 yo@1.4.8
+155 silly lockFile 94885abb-yo-1-4-8 yo@1.4.8
+156 silly lockFile d937c28e-yo yo@
+157 silly lockFile d937c28e-yo yo@
+158 silly lockFile 3a55fcca--npmjs-org-bower-bower-1-5-3-tgz https://registry.npmjs.org/bower/-/bower-1.5.3.tgz
+159 silly lockFile 3a55fcca--npmjs-org-bower-bower-1-5-3-tgz https://registry.npmjs.org/bower/-/bower-1.5.3.tgz
+160 silly lockFile a87c38db-bower-1-5-3 bower@1.5.3
+161 silly lockFile a87c38db-bower-1-5-3 bower@1.5.3
+162 silly lockFile 1240aab1-bower bower@
+163 silly lockFile 1240aab1-bower bower@
+164 http 200 https://registry.npmjs.org/grunt-cli/-/grunt-cli-0.1.13.tgz
+165 silly lockFile ab76c46e-g-grunt-cli-grunt-cli-0-1-13-tgz https://registry.npmjs.org/grunt-cli/-/grunt-cli-0.1.13.tgz
+166 silly lockFile ab76c46e-g-grunt-cli-grunt-cli-0-1-13-tgz https://registry.npmjs.org/grunt-cli/-/grunt-cli-0.1.13.tgz
+167 silly lockFile 28997503-grunt-cli-0-1-13 grunt-cli@0.1.13
+168 silly lockFile 28997503-grunt-cli-0-1-13 grunt-cli@0.1.13
+169 silly lockFile d63f3d0b-grunt-cli grunt-cli@
+170 silly lockFile d63f3d0b-grunt-cli grunt-cli@
+171 error Error: EACCES, mkdir '/home/ben/.npm/gulp/3.9.0'
+171 error  { [Error: EACCES, mkdir '/home/ben/.npm/gulp/3.9.0'] errno: 3, code: 'EACCES', path: '/home/ben/.npm/gulp/3.9.0' }
+172 error Please try running this command again as root/Administrator.
+173 error System Linux 3.16.0-49-generic
+174 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "-g" "yo" "bower" "grunt-cli" "gulp"
+175 error cwd /home/ben/projects/game3/cordova
+176 error node -v v0.10.39
+177 error npm -v 1.4.28
+178 error path /home/ben/.npm/gulp/3.9.0
+179 error code EACCES
+180 error errno 3
+181 error stack Error: EACCES, mkdir '/home/ben/.npm/gulp/3.9.0'
+182 verbose exit [ 3, true ]
