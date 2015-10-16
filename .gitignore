@@ -2,3 +2,4 @@ dest
 /dest
 .idea/
 cordova/platforms
+/dest/**/*.*
