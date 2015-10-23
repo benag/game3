@@ -14,6 +14,10 @@ var canvas, stage, ONCE = true, assets,
 
 function init() {
     // creating the canvas-element
+    AdMob.createBanner( {
+        adId: addWrapper.admobid.banner,
+        position: AdMob.AD_POSITION.BOTTOM_CENTER,
+        autoShow: true } );
     canvas = document.createElement('canvas');
     MathBalloonWindow.setWindowDimentions();
     MathBalloonWindow.setCanvas(canvas);
@@ -36,6 +40,7 @@ function init() {
     loadSounds();
     addWrapper.init();
     MathBalloonWindow.resize();
+    document.addEventListener("backbutton", assetsLoaded, false);
 }
 
 function loadSounds() {
@@ -46,6 +51,7 @@ function loadSounds() {
 
 }
 function stopSound() {
+    MBSound.play('click','1');
     if (stopMusic === true) {
         MBSound.play('back','0.2',-1);
         stopMusic = false;
@@ -76,7 +82,7 @@ function addI(res, x, y, scaleX, scaleY, call) {
 
 function handleInstructClick(evt, data) {
 
-
+    MBSound.play('click','1');
     AdMob.prepareInterstitial( {adId:addWrapper.admobid.interstitial, autoShow:true} );
     AdMob.showInterstitial();
     document.addEventListener('onAdDismiss', function(e){
@@ -97,10 +103,7 @@ function handleInstructClick(evt, data) {
 
 }
 function assetsLoaded(e) {
-    AdMob.createBanner( {
-        adId: addWrapper.admobid.banner,
-        position: AdMob.AD_POSITION.BOTTOM_CENTER,
-        autoShow: true } );
+    stage.removeAllChildren();
     background = new createjs.Bitmap(AssetsService.assets[config.assets.BACKGROUNDURL]);
     //var bounds = background.getBounds();
     //console.log('bounds' + bounds);
@@ -241,51 +244,51 @@ function textOnClick() {
 }
 function setLevel() {
 
-    //if (tmpTick === 1) {
-    //    STATE = 'INTRO';
-    //    handleInstructClick();
-    //    //endLevel = new createjs.Text("End of Level " + level, "bold 40px Impact", "#FF0000");
-    //    //endLevel.y = canvas.height * 0.4;
-    //    //endLevel.x = canvas.width * 0.2;
-    //    //stage.addChild(endLevel);
-    //    createjs.Sound.stop();
-    //    stopMusic = true;
-    //    //createjs.Sound.play('finishLevel', {volume: 1});
-    //    tmpTick++;
-    //} else {
-    //
-    //    if (tmpTick === 20) {
-    //        AdMob.showInterstitial();
-    //    //    yourscourse = new createjs.Text("Your Score: " + scoring.score, "bold 40px Impact", "#FF0000");
-    //    //    yourscourse.y = canvas.height * 0.4 + 40;
-    //    //    yourscourse.x = canvas.width * 0.2;
-    //    //    stage.addChild(yourscourse);
-    //    //
-    //    }
-    //    if (tmpTick === 100) {
-    //        AdMob.showInterstitial();
-    //    //    stage.removeChild(endLevel);
-    //    //    stage.removeChild(yourscourse);
-    //    //    level++;
-    //    //    startingLevel = new createjs.Text("Tap or Click to Start Level " + level, "bold 40px Impact", "#FF0000");
-    //    //    startingLevel.y = canvas.height * 0.4;
-    //    //    startingLevel.x = canvas.width * 0.05;
-    //    //    startingLevel.addEventListener("click", textOnClick.bind(this));
-    //    //    stage.addChild(startingLevel);
-    //    }
-    //    if (tmpTick === 100) {
-    //        AdMob.showInterstitial();
-    //    //    // stage.removeChild(startingLevel);
-    //    //    // speed=speed+0.2;
-    //    //    // currentCycle=1;
-    //    //    // tmpTick=1;
-    //    //    // STATE='GAME';
-    //    //    // scoring.score=0;
-    //    }
-    //
-    //    tmpTick++;
-    //
-    //}
+    if (tmpTick === 1) {
+        STATE = 'INTRO';
+        handleInstructClick();
+        //endLevel = new createjs.Text("End of Level " + level, "bold 40px Impact", "#FF0000");
+        //endLevel.y = canvas.height * 0.4;
+        //endLevel.x = canvas.width * 0.2;
+        //stage.addChild(endLevel);
+        createjs.Sound.stop();
+        stopMusic = true;
+        //createjs.Sound.play('finishLevel', {volume: 1});
+        tmpTick++;
+    } else {
+
+        if (tmpTick === 20) {
+            AdMob.showInterstitial();
+        //    yourscourse = new createjs.Text("Your Score: " + scoring.score, "bold 40px Impact", "#FF0000");
+        //    yourscourse.y = canvas.height * 0.4 + 40;
+        //    yourscourse.x = canvas.width * 0.2;
+        //    stage.addChild(yourscourse);
+        //
+        }
+        if (tmpTick === 100) {
+            AdMob.showInterstitial();
+        //    stage.removeChild(endLevel);
+        //    stage.removeChild(yourscourse);
+        //    level++;
+        //    startingLevel = new createjs.Text("Tap or Click to Start Level " + level, "bold 40px Impact", "#FF0000");
+        //    startingLevel.y = canvas.height * 0.4;
+        //    startingLevel.x = canvas.width * 0.05;
+        //    startingLevel.addEventListener("click", textOnClick.bind(this));
+        //    stage.addChild(startingLevel);
+        }
+        if (tmpTick === 100) {
+            AdMob.showInterstitial();
+        //    // stage.removeChild(startingLevel);
+        //    // speed=speed+0.2;
+        //    // currentCycle=1;
+        //    // tmpTick=1;
+        //    // STATE='GAME';
+        //    // scoring.score=0;
+        }
+
+        tmpTick++;
+
+    }
 }
 // update the stage every frame
 function onTick(e) {
@@ -295,7 +298,7 @@ function onTick(e) {
         tickIncycle++;
         if (tickIncycle === TickBetweenCycles) {
             if (currentCycle === 10) {
-                setLevel();
+                //setLevel();
                 tickIncycle = 0;
                 currentCycle=0;
             } else {

@@ -4,6 +4,7 @@ var MBSound = {
     pop: undefined,
     tadam: undefined,
     finishLevel: undefined,
+    click: undefined,
     registerSound: function () {
         if (config.global.registerSound === 'sound.js') {
             this.registerSoundJSSound();
@@ -17,6 +18,7 @@ var MBSound = {
             //MBSound.my_media = new Media('cdvfile://localhost/img/sfx/amik.ogg',
             //my_media = new Media('cdvfile://localhost/www/img/sfx/amik.ogg',
             this.back = new Media('/android_asset/www/img/sfx/B-3.mp3', function () {}, function (err) {});
+            this.click = new Media('/android_asset/www/img/sfx/click.wav', function () {}, function (err) {});
             this.pop  = new Media('/android_asset/www/img/sfx/pop.ogg', function () {}, function (err) {});
             this.tadam = new Media('/android_asset/www/img/sfx/tada3.ogg', function () {}, function (err) {});
             this.finishLevel = new Media('/android_asset/www/img/sfx/triumphal.wav', function () {}, function (err) {});
