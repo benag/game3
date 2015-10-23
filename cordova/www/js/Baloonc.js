@@ -72,16 +72,12 @@
         this.addChild(this.animation);
         ////createjs.Sound.play(JMP.SOUNDS.POP,null,0,0,0,0.8);
         //createjs.Sound.play('pop',{volume:1});
-        MBSound.play('pop',1,undefined);
+        MBSound.play('pop','1.0',undefined);
         if (this.solution===true){
             this.pop=true;
             this.poptick=0;
             this.scoring.score=this.scoring.score+20;
-            //createjs.Sound.play('tadam',{volume:1});
-            MBSound.play('tadam',1,undefined);
-            //this.addChild(this.bitmapscore);
-            //this.removeChild(this.bitmapscore);
-            
+            MBSound.play('tadam','1.0',undefined);
         }else{
             this.pop=true;
             this.poptick=0;
