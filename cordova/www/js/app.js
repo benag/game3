@@ -14,10 +14,7 @@ var canvas, stage, ONCE = true, assets,
 
 function init() {
     // creating the canvas-element
-    AdMob.createBanner( {
-        adId: addWrapper.admobid.banner,
-        position: AdMob.AD_POSITION.BOTTOM_CENTER,
-        autoShow: true } );
+
     canvas = document.createElement('canvas');
     MathBalloonWindow.setWindowDimentions();
     MathBalloonWindow.setCanvas(canvas);
@@ -91,10 +88,10 @@ function handleInstructClick(evt, data) {
         //var music = addI(stopmusic, 10, 7, normalw, normalh, stopSound);
         addI('UPPERLINE', 0, 0, normalw, normalh, undefined);
         addI('BUTTOMLINE', 0, (canvas.height - 23), normalw, normalh, undefined);
-        addI('SOUNDOFF',50,5,0.5,0.5,stopSound);
-        stage.setChildIndex(music, 2);
+        addI('SOUNDOFF',50,3,0.5,0.5,stopSound);
+        //stage.setChildIndex(music, 2);
         scoreText = new createjs.Text(scoring.score, "bold 25px Courier", "#ffffff");
-        scoreText.x = cw * 0.46;
+        scoreText.x = cw * 0.45;
         scoreText.y = ch * 0.025;
         stage.addChild(scoreText);
         STATE = 'GAME';
@@ -103,6 +100,10 @@ function handleInstructClick(evt, data) {
 
 }
 function assetsLoaded(e) {
+    AdMob.createBanner( {
+        adId: addWrapper.admobid.banner,
+        position: AdMob.AD_POSITION.BOTTOM_CENTER,
+        autoShow: true } );
     stage.removeAllChildren();
     background = new createjs.Bitmap(AssetsService.assets[config.assets.BACKGROUNDURL]);
     //var bounds = background.getBounds();
@@ -139,7 +140,7 @@ function assetsLoaded(e) {
     titleIIbitmap.scaleY = normalh;
     stage.addChild(titleIIbitmap);
     //addI(stopmusic, 10, 10, normalw, normalh, stopSound);
-    addI('SOUNDOFF',50,5,0.5,0.5,stopSound);
+    addI('SOUNDOFF',50,3,0.5,0.5,stopSound);
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener("tick", onTick);
 }
@@ -244,63 +245,74 @@ function textOnClick() {
 }
 function setLevel() {
 
-    if (tmpTick === 1) {
-        STATE = 'INTRO';
-        handleInstructClick();
-        //endLevel = new createjs.Text("End of Level " + level, "bold 40px Impact", "#FF0000");
-        //endLevel.y = canvas.height * 0.4;
-        //endLevel.x = canvas.width * 0.2;
-        //stage.addChild(endLevel);
-        createjs.Sound.stop();
-        stopMusic = true;
-        //createjs.Sound.play('finishLevel', {volume: 1});
-        tmpTick++;
-    } else {
-
-        if (tmpTick === 20) {
-            AdMob.showInterstitial();
-        //    yourscourse = new createjs.Text("Your Score: " + scoring.score, "bold 40px Impact", "#FF0000");
-        //    yourscourse.y = canvas.height * 0.4 + 40;
-        //    yourscourse.x = canvas.width * 0.2;
-        //    stage.addChild(yourscourse);
-        //
-        }
-        if (tmpTick === 100) {
-            AdMob.showInterstitial();
-        //    stage.removeChild(endLevel);
-        //    stage.removeChild(yourscourse);
-        //    level++;
-        //    startingLevel = new createjs.Text("Tap or Click to Start Level " + level, "bold 40px Impact", "#FF0000");
-        //    startingLevel.y = canvas.height * 0.4;
-        //    startingLevel.x = canvas.width * 0.05;
-        //    startingLevel.addEventListener("click", textOnClick.bind(this));
-        //    stage.addChild(startingLevel);
-        }
-        if (tmpTick === 100) {
-            AdMob.showInterstitial();
-        //    // stage.removeChild(startingLevel);
-        //    // speed=speed+0.2;
-        //    // currentCycle=1;
-        //    // tmpTick=1;
-        //    // STATE='GAME';
-        //    // scoring.score=0;
-        }
-
-        tmpTick++;
-
-    }
+    //if (tmpTick === 1) {
+    //    STATE = 'INTRO';
+    //    handleInstructClick();
+    //    //endLevel = new createjs.Text("End of Level " + level, "bold 40px Impact", "#FF0000");
+    //    //endLevel.y = canvas.height * 0.4;
+    //    //endLevel.x = canvas.width * 0.2;
+    //    //stage.addChild(endLevel);
+    //    createjs.Sound.stop();
+    //    stopMusic = true;
+    //    //createjs.Sound.play('finishLevel', {volume: 1});
+    //    tmpTick++;
+    //} else {
+    //
+    //    if (tmpTick === 20) {
+    //        AdMob.showInterstitial();
+    //    //    yourscourse = new createjs.Text("Your Score: " + scoring.score, "bold 40px Impact", "#FF0000");
+    //    //    yourscourse.y = canvas.height * 0.4 + 40;
+    //    //    yourscourse.x = canvas.width * 0.2;
+    //    //    stage.addChild(yourscourse);
+    //    //
+    //    }
+    //    if (tmpTick === 100) {
+    //        AdMob.showInterstitial();
+    //    //    stage.removeChild(endLevel);
+    //    //    stage.removeChild(yourscourse);
+    //    //    level++;
+    //    //    startingLevel = new createjs.Text("Tap or Click to Start Level " + level, "bold 40px Impact", "#FF0000");
+    //    //    startingLevel.y = canvas.height * 0.4;
+    //    //    startingLevel.x = canvas.width * 0.05;
+    //    //    startingLevel.addEventListener("click", textOnClick.bind(this));
+    //    //    stage.addChild(startingLevel);
+    //    }
+    //    if (tmpTick === 100) {
+    //        AdMob.showInterstitial();
+    //    //    // stage.removeChild(startingLevel);
+    //    //    // speed=speed+0.2;
+    //    //    // currentCycle=1;
+    //    //    // tmpTick=1;
+    //    //    // STATE='GAME';
+    //    //    // scoring.score=0;
+    //    }
+    //
+    //    tmpTick++;
+    //
+    //}
 }
 // update the stage every frame
 function onTick(e) {
     if (STATE === 'GAME') {
         var scorenum = scoring.score;
         scoreText.text = scorenum.toString();
+        if (scoreText.text.length === 1){
+            scoreText.x = cw * 0.47;
+        };
+        if (scoreText.text.length === 2){
+            scoreText.x = cw * 0.465;
+        };
+        if (scoreText.text.length === 2){
+            scoreText.x = cw * 0.444;
+        };
         tickIncycle++;
         if (tickIncycle === TickBetweenCycles) {
             if (currentCycle === 10) {
                 //setLevel();
                 tickIncycle = 0;
+                AdMob.showInterstitial();
                 currentCycle=0;
+                speed = speed + 0.05;
             } else {
                 setRound();
                 currentCycle++;

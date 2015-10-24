@@ -80,6 +80,9 @@
             MBSound.play('tadam','1.0',undefined);
         }else{
             this.pop=true;
+            if (this.scoring.score >= 5){
+                this.scoring.score = this.scoring.score - 5;
+            }
             this.poptick=0;
         }
     };
