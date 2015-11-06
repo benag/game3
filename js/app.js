@@ -46,29 +46,23 @@ function init() {
     // creating the canvas-element
     canvas = document.createElement('canvas');
     window.addEventListener('resize', resize, false);
-    console.log('screen width: ' + ndgmr.getScreenWidth());
-    cw = ndgmr.getScreenWidth();
-    ch = ndgmr.getScreenHeight();
+    //cw = ndgmr.getScreenWidth();
+    //ch = ndgmr.getScreenHeight();
     //S = Math.min(cw/800,ch/480);
     //S = Math.min(CW/800,CH/480);
     //S = ndgmr.snapValue(S*(window.devicePixelRatio||1),0.5);
-    normalw = cw / 500;
-    normalh = ch / 800;
-    S = 1;
-    canvas.width = cw;
-    canvas.height = ch;
-    //canvas.width= window.innerWidth;
-    //canvas.height= window.innerHeight;
-    //canvas.width= 550;
-    //canvas.height= 700;
+    //normalw = cw / 500;
+    //normalh = ch / 800;
+    S =1;
+    cw = 500;
+    ch = 800;
+    canvas.width= cw;
+    canvas.height= ch;
     scoring.score = 0;
-    //canvas.style.position = "absolute";
-    //canvas.style.left = 500+"px";
-    //canvas.style.top = 100+"px";
-    //canvas.width = canvaswidth;
-    //canvas.height = 550;
+    canvas.style.position = "absolute";
+    canvas.style.left = 500+"px";
+    canvas.style.top = 100+"px";
     document.body.appendChild(canvas);
-    // initializing the stage
     stage = new createjs.Stage(canvas);
     createjs.Touch.enable(stage);//only for mobile
     assets = new AssetFactory();
@@ -211,38 +205,43 @@ function handleInstructClick(evt, data) {
 function assetsLoaded(e) {
     console.log('starting assetLoaded');
     background = new createjs.Bitmap(assets[backgrondURL]);
-    //var bounds = background.getBounds();
-    //console.log('bounds' + bounds);
+    var bounds = background.getBounds();
+    console.log(bounds);
+    bounds.width = 500;
+    bounds.height = 800;
+    console.log(bounds);
+    background.setBounds(bounds);
+    ////console.log('bounds' + bounds);
     var normalBackgroundH  = ch / 550 ;
-    background.scaleX = normalw;
+    //background.scaleX = normalw;
     background.scaleY = normalBackgroundH;
     stage.addChild(background);
     // filter
     filterBack = new createjs.Bitmap(assets[filterBackURL]);
-    filterBack.scaleX = normalw;
-    filterBack.scaleY = normalBackgroundH;
+    //filterBack.scaleX = normalw;
+    //filterBack.scaleY = normalBackgroundH;
     stage.addChild(filterBack);
     // child image
     childbitmap = new createjs.Bitmap(childImage);
     childbitmap.x = cw * 0.7;
     childbitmap.y = ch * 0.4;
-    childbitmap.scaleX = normalw;
-    childbitmap.scaleY = normalh;
+    //childbitmap.scaleX = normalw;
+    //childbitmap.scaleY = normalh;
     stage.addChild(childbitmap);
     // instruction
     startBitmap = new createjs.Bitmap(instructBit);
     startBitmap.x = cw * 0.1;
     startBitmap.y = ch * 0.45;
-    startBitmap.scaleX = normalw;
-    startBitmap.scaleX = normalh;
+    //startBitmap.scaleX = normalw;
+    //startBitmap.scaleX = normalh;
     startBitmap.on("click", handleInstructClick);
     stage.addChild(startBitmap);
     //
     titleIIbitmap = new createjs.Bitmap(titleII);
     titleIIbitmap.x = cw * 0.1;
     titleIIbitmap.y = ch * 0.05;
-    titleIIbitmap.scaleX = normalw;
-    titleIIbitmap.scaleY = normalh;
+    //titleIIbitmap.scaleX = normalw;
+    //titleIIbitmap.scaleY = normalh;
     stage.addChild(titleIIbitmap);
     addI(stopmusic, 10, 10, normalw, normalh, stopSound);
     createjs.Ticker.setFPS(30);

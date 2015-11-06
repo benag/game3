@@ -325,21 +325,3 @@ function onTick(e) {
     stage.update();
 }
 
-
-//S = Math.min(cw/800,ch/480);
-//S = Math.min(CW/800,CH/480);
-//S = ndgmr.snapValue(S*(window.devicePixelRatio||1),0.5);
-
-//canvas.width = cw;
-//canvas.height = ch;
-//canvas.width= window.innerWidth;
-//canvas.height= window.innerHeight;
-////assets.scale = S;
-////assets.scaleMethod = ndgmr.nearestNeighborScale;
-//var startImage = new createjs.Bitmap(AssetsService.assets[config.assets.START]);
-//startImage.addEventListener("click", handleInstructClick );
-//startImage.x = MathBalloonWindow.CW * 0.5;
-//startImage.x = MathBalloonWindow.CH * 0.5;
-//startImage.scaleX = normalw;
-//startImage.scaleY = normalh;
-//stage.addChild(startImage);
